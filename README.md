@@ -80,14 +80,3 @@ flowchart LR
 
 - `frontend/` — Vite + React + TypeScript client
 - `backend/` — PHP API scripts and DB connection helper
-=======
-Frontend Set up: 
-1. Install dependencies:
-   `npm install`
-2. Run the app:
-2.1. Run the frontend
-   `cd frontend`
-   `npm run dev`
-3. Database design:
-   https://app.eraser.io/workspace/OWt9ztkgZHv12ClXPSvL?origin=share&diagram=jfyTzkhAj4TwcMqmoFbrr
->>>>>>> 0952958b383b89d6fc5de6005b09777fcc18a74c
