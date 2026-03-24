@@ -1,0 +1,5 @@
+{
+  "name": "CVFlow",
+  "description": "A minimalistic, glassy CV management and search system inspired by Attio and Linear.",
+  "requestFramePermissions": []
+}
