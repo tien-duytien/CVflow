@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # CVFlow
 
-CVFlow is a web application for **creating, storing, and discovering CVs**. It targets three personas—job seekers, employers, and administrators—with a **glass-style UI** (inspired by tools like Attio and Linear) built in React. Data lives in **MySQL** and is exposed through small **PHP JSON endpoints** that the SPA calls over HTTP.
+CVFlow is a web application for **creating, storing, and discovering CVs**. It targets three personas—job seekers, employers, and administrators—with a **glass-style UI** built in React. Data lives in **MySQL** and is exposed through small **PHP JSON endpoints** that the SPA calls over HTTP.
 
 ---
 
