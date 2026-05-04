@@ -41,6 +41,9 @@ export const EmployerSearchView: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [results, setResults] = useState<any[]>([]);
   const [selectedCv, setSelectedCv] = useState<any | null>(null);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+  const pageSize = 9;
 
   useEffect(() => {
     (async () => {
@@ -87,7 +90,7 @@ export const EmployerSearchView: React.FC = () => {
     );
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (searchPage = 1) => {
     const params: CvSearchParams = {};
     if (keyword.trim() !== '') params.q = keyword.trim();
     params.sort = sort;
@@ -98,6 +101,8 @@ export const EmployerSearchView: React.FC = () => {
     if (minProficiencyId) params.minProficiencyId = minProficiencyId;
     if (degreeLevelId) params.degreeLevelId = degreeLevelId;
     if (institutionId) params.institutionId = institutionId;
+    params.page = searchPage;
+    params.pageSize = pageSize;
 
     try {
       setIsLoading(true);
@@ -105,18 +110,30 @@ export const EmployerSearchView: React.FC = () => {
       const res = await apiSearchCvs(params);
       if (res && Array.isArray(res.results)) {
         setResults(res.results);
+        setTotalResults(res.total ?? res.results.length);
       } else if (Array.isArray(res)) {
         setResults(res);
+        setTotalResults(res.length);
       } else {
         setResults([]);
+        setTotalResults(0);
       }
+      setPage(searchPage);
     } catch (e) {
       console.error(e);
       setError('Failed to search CVs.');
       setResults([]);
+      setTotalResults(0);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const totalPages = Math.max(1, Math.ceil(totalResults / pageSize));
+
+  const goToPage = (p: number) => {
+    if (p < 1 || p > totalPages || p === page) return;
+    handleSearch(p);
   };
 
   const handleClear = () => {
@@ -131,6 +148,8 @@ export const EmployerSearchView: React.FC = () => {
     setInstitutionId(undefined);
     setResults([]);
     setError(null);
+    setPage(1);
+    setTotalResults(0);
   };
 
   return (
@@ -314,7 +333,7 @@ export const EmployerSearchView: React.FC = () => {
               <GlassButton variant="outline" onClick={handleClear}>
                 Clear
               </GlassButton>
-              <GlassButton onClick={handleSearch} disabled={isLoading}>
+              <GlassButton onClick={() => handleSearch(1)} disabled={isLoading}>
                 {isLoading ? 'Searching...' : 'Search'}
               </GlassButton>
             </div>
@@ -345,6 +364,54 @@ export const EmployerSearchView: React.FC = () => {
               onViewProfile={() => setSelectedCv(cv)}
             />
           ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {results.length > 0 && totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 pt-4">
+          <button
+            onClick={() => goToPage(page - 1)}
+            disabled={page <= 1}
+            className="px-4 py-2 rounded-lg border border-slate-200 text-[13px] font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Previous
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+            .reduce<(number | 'ellipsis')[]>((acc, p, idx, arr) => {
+              if (idx > 0 && p - (arr[idx - 1] as number) > 1) {
+                acc.push('ellipsis');
+              }
+              acc.push(p);
+              return acc;
+            }, [])
+            .map((item, idx) =>
+              item === 'ellipsis' ? (
+                <span key={`ellipsis-${idx}`} className="px-2 text-slate-400">...</span>
+              ) : (
+                <button
+                  key={item}
+                  onClick={() => goToPage(item)}
+                  className={`w-9 h-9 rounded-lg text-[13px] font-medium transition-colors ${
+                    page === item
+                      ? 'bg-[#6366F1] text-white shadow-sm'
+                      : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {item}
+                </button>
+              ),
+            )}
+
+          <button
+            onClick={() => goToPage(page + 1)}
+            disabled={page >= totalPages}
+            className="px-4 py-2 rounded-lg border border-slate-200 text-[13px] font-medium text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Next
+          </button>
         </div>
       )}
 

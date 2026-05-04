@@ -271,7 +271,7 @@ export const AdminView: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {[
           { label: 'Total Users', value: summary.totalUsers },
           { label: 'Active Users', value: summary.activeUsers },

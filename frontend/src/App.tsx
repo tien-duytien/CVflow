@@ -10,6 +10,8 @@ import { apiLogin, apiFetchCv } from './api';
 import { getNavItemsForRole, getDefaultTabForRole } from './lib/navigation';
 import { Sidebar } from './components/layout/Sidebar';
 import { TopBar } from './components/layout/TopBar';
+import { Footer } from './components/layout/Footer';
+import { Breadcrumb } from './components/layout/Breadcrumb';
 import { ConfettiEffect } from './components/shared/ConfettiEffect';
 import { AuthView } from './features/auth/AuthView';
 import { DashboardView } from './features/dashboard/DashboardView';
@@ -122,8 +124,9 @@ export default function App() {
 
       <main className="flex-1 flex flex-col relative overflow-hidden">
         <TopBar fullName={cvData.personal.fullName} role={role} />
+        <Breadcrumb activeTab={activeTab} role={role} />
 
-        <div className="flex-1 overflow-y-auto p-12 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-12 custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeTab === 'dashboard' && (
               role === 'employer' ? (
@@ -153,6 +156,8 @@ export default function App() {
             {activeTab === 'admin' && <AdminView key="admin" />}
           </AnimatePresence>
         </div>
+
+        <Footer />
       </main>
 
       {showConfetti && <ConfettiEffect onComplete={() => setShowConfetti(false)} />}

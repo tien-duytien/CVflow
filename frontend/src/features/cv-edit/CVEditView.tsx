@@ -224,7 +224,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
               exit={{ opacity: 0, x: -10 }}
               className="flex flex-col"
             >
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
                   <label className="text-[14px] text-slate-600 font-medium tracking-wide">Category</label>
                   <select
@@ -279,7 +279,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                     <option value="female">Female</option>
                   </select>
                 </div>
-                <div className="col-span-2 flex flex-col gap-2">
+                <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
                   <label className="text-[14px] text-slate-600 font-medium tracking-wide">Bio</label>
                   <textarea
                     className={TEXTAREA_CLASS + ' min-h-[160px]'}
@@ -301,7 +301,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
               exit={{ opacity: 0, x: -10 }}
               className="flex flex-col"
             >
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
                   <label className="text-[14px] text-slate-600 font-medium tracking-wide">Country</label>
                   <select
@@ -397,7 +397,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
             >
               <div className="flex flex-col gap-8">
                 {data.education.map((edu, idx) => (
-                  <div key={edu.id} className="grid grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
+                  <div key={edu.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
                     <div className="flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Institution</label>
                       <select
@@ -485,7 +485,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         education: prev.education.map((item, i) => i === idx ? { ...item, endYear: e.target.value } : item),
                       }))}
                     />
-                    <div className="col-span-2 flex flex-col gap-2">
+                    <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Description</label>
                       <textarea
                         className={TEXTAREA_CLASS}
@@ -497,7 +497,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         }))}
                       />
                     </div>
-                    <div className="col-span-2 flex justify-end">
+                    <div className="col-span-1 md:col-span-2 flex justify-end">
                       <button type="button" onClick={() => setData((prev) => ({ ...prev, education: prev.education.filter((_, i) => i !== idx) }))} className="text-red-500 text-sm hover:underline flex items-center gap-1">
                         <Trash2 size={14} /> Remove
                       </button>
@@ -535,7 +535,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
             >
               <div className="flex flex-col gap-8">
                 {data.work.map((w, idx) => (
-                  <div key={w.id} className="grid grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
+                  <div key={w.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
                     <GlassInput
                       label="Company Name"
                       placeholder="Company"
@@ -626,7 +626,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         work: prev.work.map((item, i) => i === idx ? { ...item, endYear: e.target.value } : item),
                       }))}
                     />
-                    <div className="flex flex-col gap-2 col-span-2">
+                    <div className="flex flex-col gap-2 col-span-1 md:col-span-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Currently working here?</label>
                       <div className="flex gap-4 h-[48px] items-center">
                         <label className="flex items-center gap-2 cursor-pointer">
@@ -657,7 +657,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         </label>
                       </div>
                     </div>
-                    <div className="col-span-2 flex flex-col gap-2">
+                    <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Description</label>
                       <textarea
                         className={TEXTAREA_CLASS}
@@ -669,7 +669,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         }))}
                       />
                     </div>
-                    <div className="col-span-2 flex justify-end">
+                    <div className="col-span-1 md:col-span-2 flex justify-end">
                       <button type="button" onClick={() => setData((prev) => ({ ...prev, work: prev.work.filter((_, i) => i !== idx) }))} className="text-red-500 text-sm hover:underline flex items-center gap-1">
                         <Trash2 size={14} /> Remove
                       </button>
@@ -710,7 +710,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
             >
               <div className="flex flex-col gap-8">
                 {data.skills.map((s, idx) => (
-                  <div key={s.id} className="grid grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
+                  <div key={s.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
                     <div className="flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Skill</label>
                       <select
@@ -753,7 +753,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         ))}
                       </select>
                     </div>
-                    <div className="col-span-2 flex justify-end">
+                    <div className="col-span-1 md:col-span-2 flex justify-end">
                       <button type="button" onClick={() => setData((prev) => ({ ...prev, skills: prev.skills.filter((_, i) => i !== idx) }))} className="text-red-500 text-sm hover:underline flex items-center gap-1">
                         <Trash2 size={14} /> Remove
                       </button>
@@ -787,7 +787,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
             >
               <div className="flex flex-col gap-8">
                 {data.certificates.map((c, idx) => (
-                  <div key={c.id} className="grid grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
+                  <div key={c.id} className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 rounded-xl border border-slate-100 bg-slate-50/30">
                     <div className="flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Certificate</label>
                       <select
@@ -839,7 +839,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         certificates: prev.certificates.map((item, i) => i === idx ? { ...item, issuedYear: e.target.value } : item),
                       }))}
                     />
-                    <div className="col-span-2 flex flex-col gap-2">
+                    <div className="col-span-1 md:col-span-2 flex flex-col gap-2">
                       <label className="text-[14px] text-slate-600 font-medium tracking-wide">Description</label>
                       <textarea
                         className={TEXTAREA_CLASS}
@@ -851,7 +851,7 @@ export const CVEditView: React.FC<CVEditViewProps> = ({
                         }))}
                       />
                     </div>
-                    <div className="col-span-2 flex justify-end">
+                    <div className="col-span-1 md:col-span-2 flex justify-end">
                       <button type="button" onClick={() => setData((prev) => ({ ...prev, certificates: prev.certificates.filter((_, i) => i !== idx) }))} className="text-red-500 text-sm hover:underline flex items-center gap-1">
                         <Trash2 size={14} /> Remove
                       </button>

@@ -33,6 +33,32 @@ export async function apiLogin(email: string, password: string): Promise<LoginRe
   return data;
 }
 
+export async function apiRequestPasswordReset(email: string) {
+  const res = await fetch(`${BASE_URL}/backend/forgot_password.php`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'request_reset', email }),
+  });
+  const data = await res.json();
+  if (!res.ok || !data.success) {
+    throw new Error(data.error || 'Failed to request password reset');
+  }
+  return data;
+}
+
+export async function apiResetPassword(token: string, newPassword: string) {
+  const res = await fetch(`${BASE_URL}/backend/forgot_password.php`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'reset_password', token, newPassword }),
+  });
+  const data = await res.json();
+  if (!res.ok || !data.success) {
+    throw new Error(data.error || 'Failed to reset password');
+  }
+  return data;
+}
+
 export async function apiRegister(email: string, password: string, role: string): Promise<RegisterResponse> {
   const res = await fetch(`${BASE_URL}/backend/register.php`, {
     method: 'POST',

@@ -40,7 +40,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ role, data }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-[2.3fr,1.1fr] gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-[2.3fr,1.1fr] gap-10">
             <div className="flex flex-col gap-8">
               {data.work.length > 0 && (
                 <section className="flex flex-col gap-4">

@@ -35,7 +35,7 @@ export const SearchView: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <GlassCard key={i} className="p-6 flex flex-col gap-6 group hover:translate-y-[-4px] transition-all duration-300">
             <div className="flex items-center gap-4">
